@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
 router.get('/status', async (req, res) => {
     try {
 
-        const targetUrl = 'http://localhost:5000/api/v1/leads/status';
+        const targetUrl = 'http://localhost:5000/api/v1/lead/external-leads';
 
         const targetResponse = await axios.post(targetUrl, {...req.query}, {
             headers: {
