@@ -10,12 +10,12 @@ router.post('/register', async (req, res) => {
         const targetResponse = await axios.post(targetUrl, {...req.body}, {
             headers: {
                 'Content-Type': 'application/json',
+                'api-key': req.headers['api-key']
             },
         })
 
         if (targetResponse) {
-            res.header('Content-Type', 'application/json');
-            res.status(targetResponse.status).json(targetResponse);
+           return res.status(targetResponse.status).send(targetResponse.data);
         }
     } catch (error) {
         return res.status(500).json({message: error.message});
@@ -25,16 +25,17 @@ router.post('/register', async (req, res) => {
 router.get('/status', async (req, res) => {
     try {
 
-        const targetUrl = 'http://localhost:5000/api/v1/lead/status';
+        const targetUrl = 'http://localhost:5000/api/v1/leads/status';
 
         const targetResponse = await axios.post(targetUrl, {...req.query}, {
             headers: {
                 'Content-Type': 'application/json',
+                'api-key': req.headers['api-key']
             },
         })
 
         if (targetResponse) {
-            return res.status(200).send(JSON.stringify(targetResponse.data));
+            return res.status(targetResponse.status).send(targetResponse.data);
         }
     } catch (error) {
         return res.status(500).json({message: error.message});

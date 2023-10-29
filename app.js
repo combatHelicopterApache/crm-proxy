@@ -22,10 +22,7 @@ app.use(
 
 const serverStart = async () => {
     const PORT = process.env.PORT || 8000;
-
     try {
-
-
         app.listen(PORT, () => console.log(` ⚡️ Started at port ${PORT}`));
     } catch (e) {
         console.log("Server Error", e.message);
