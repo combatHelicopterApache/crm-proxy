@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 
 app.use(
-    "/api/v1/lead",
+    "/api/v1",
     require("./routes/leadRoutes")
 );
 
