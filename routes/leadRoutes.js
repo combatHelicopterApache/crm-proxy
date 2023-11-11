@@ -13,7 +13,6 @@ router.post('/lead/register', async (req, res) => {
                 'api-key': req.headers['x-api-key']
             },
         })
-console.log(targetResponse.data)
         if (targetResponse.data.status === true) {
            return res.status(targetResponse.status).send(targetResponse.data.result);
         } else {
@@ -37,10 +36,10 @@ router.get('/leads', async (req, res) => {
             },
         });
 
-        if (response) {
+        if (response.data.status === true) {
             return res.status(response.status).send(response.data.result);
         } else {
-            return res.status(400).send({ message: 'Bad request!'});
+            return res.status(400).send(targetResponse.data);
         }
     } catch (error) {
         return res.status(500).json({message: error.message});
