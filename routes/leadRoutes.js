@@ -13,10 +13,12 @@ router.post('/lead/register', async (req, res) => {
                 'api-key': req.headers['x-api-key']
             },
         })
-        if (targetResponse.data.status === true) {
-           return res.status(targetResponse.status).send(targetResponse.data.result);
+
+
+        if (targetResponse.data.result && targetResponse.data.result.status === true) {
+           return res.status(targetResponse.data.result.code).send(targetResponse.data.result);
         } else {
-            return res.status(400).send(targetResponse.data);
+            return res.status(200).send(targetResponse.data);
         }
     } catch (error) {
         return res.status(500).json({message: error.message});
@@ -36,10 +38,10 @@ router.get('/leads', async (req, res) => {
             },
         });
 
-        if (response.data.status === true) {
-            return res.status(response.status).send(response.data.result);
+        if (response.data.result && response.data.result.status === true) {
+            return res.status(response.data.result.code).send(response.data.result);
         } else {
-            return res.status(400).send(targetResponse.data);
+            return res.status(200).send(response.data);
         }
     } catch (error) {
         return res.status(500).json({message: error.message});
