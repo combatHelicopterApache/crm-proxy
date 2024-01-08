@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const authMiddleware =  require('./middlewares/authMiddleware')
 const cors = require("cors");
 
 
@@ -11,7 +11,10 @@ app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(
+    '/',
+    authMiddleware,
+)
 
 app.use(
     "/api/v1",
